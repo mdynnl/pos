@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         $orders = Order::all();
         $ordersByDate = $orders->groupBy(fn ($o) => $o->created_at->toDateString());
+
         return inertia('Dashboard', [
             'orders' => [
                 'all' => $orders,
